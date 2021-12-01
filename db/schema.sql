@@ -26,3 +26,4 @@ CREATE TABLE employee (
   manager_id INT NULL
 );
 
+SELECT * FROM department, roles, employee;
