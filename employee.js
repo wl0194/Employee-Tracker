@@ -13,33 +13,47 @@ const db = mysql.createConnection(
 );
 
 function menu() {
-inquirer
-  .prompt([
-    {
-      type: "list",
-      message: "What would you like to do?",
-      name: "choice",
-      choices: [
-        "View All Employees",
-        "Add Employee",
-        "Update Employee Role",
-        "View All Roles",
-        "Add Role",
-        "View All Departments",
-        "Add Department",
-        "Quit",
-      ]
-    }
-  ]).then((response) => {
-    console.log(response.choice)
-    if (response.choice === "View All Departments") {
-      getAllDepartments()
+  inquirer
+    .prompt([
+      {
+        type: "list",
+        message: "What would you like to do?",
+        name: "choice",
+        choices: [
+          "View All Employees",
+          "Add Employee",
+          "Update Employee Role",
+          "View All Roles",
+          "Add Role",
+          "View All Departments",
+          "Add Department",
+          "Quit",
+        ]
+      },
+      {
+        type: "input",
+        name: "firstname",
+        message: "What is the employee's first name?"
+      },
+      {
+        type: "input",
+        name: "lastname",
+        message: "What is the employee's last name?"
+      }
 
-    } else if("View All Roles" === response.choice){
-      getAllRoles()
-    }
-
-  });
+    ])
+    .then((response) => {
+      console.log(response.choice)
+      if (response.choice === "View All Departments") {
+        getAllDepartments()
+      } else if ("View All Roles" === response.choice) {
+        getAllRoles()
+      } else if ("View All Employees" === response.firstname) {
+        getAllEmployees()
+      } else if ("View All Employees" === response.lastname) {
+        getAddEmployee()
+      }
+    });
 };
 
 function getAllDepartments() {
@@ -53,13 +67,33 @@ function getAllDepartments() {
   })
 }
 function getAllRoles() {
-db.query("SELECT * FROM roles", (err, results) => {
-  if (err) {
-    console.table(err);
-  } else {
-    console.table(results);
-    menu();
-  }
-})
+  db.query("SELECT * FROM roles", (err, results) => {
+    if (err) {
+      console.table(err);
+    } else {
+      console.table(results);
+      menu();
+    }
+  })
+}
+function getAllEmployees() {
+  db.query("SELECT * FROM employee", (err, results) => {
+    if (err) {
+      console.table(err);
+    } else {
+      console.table(results);
+      menu();
+    }
+  })
+}
+function getAddEmployee() {
+  db.query("INSERT INTO employee(firstname,lastname)", (err, results) => {
+    if (err) {
+      console.table(err);
+    } else {
+      console.table(results);
+      menu();
+    }
+  })
 }
 menu();
