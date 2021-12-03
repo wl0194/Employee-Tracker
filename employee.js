@@ -29,15 +29,7 @@ function menu() {
           "Add Department",
           "Quit",
         ]
-      }])
-      .prompt([
-        {
-          type: "input",
-          message: "What is the name of the department?",
-          name: "department",
-        }
-      ])
-      
+      }]
         .then((response) => {
             console.log(response.choice)
             if (response.choice === "View All Departments") {
@@ -104,4 +96,12 @@ function getAllEmployees() {
 //     }
 //   })
 // }
-menu();
+menu()
+
+// .prompt([
+//   {
+//     type: "input",
+//     message: "What is the name of the department?",
+//     name: "department",
+//   }
+// ])
