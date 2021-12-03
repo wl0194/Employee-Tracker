@@ -35,26 +35,26 @@ function menu() {
         name: "firstname",
         message: "What is the employee's first name?"
       },
-      {
-        type: "input",
-        name: "lastname",
-        message: "What is the employee's last name?"
-      },
-      {
-        type: "list",
-        name: "role",
-        message: "What is the employee's role?",
-        choices: [
-          "Sales Lead",
-          "Salesperson",
-          "Lead Enginner",
-          "Software Engineer",
-          "Account Manager",
-          "Accountant",
-          "Legal Team Lead",
-          "Lawyer"
-        ]
-      }
+      // {
+      //   type: "input",
+      //   name: "lastname",
+      //   message: "What is the employee's last name?"
+      // },
+      // {
+      //   type: "list",
+      //   name: "role",
+      //   message: "What is the employee's role?",
+      //   choices: [
+      //     "Sales Lead",
+      //     "Salesperson",
+      //     "Lead Enginner",
+      //     "Software Engineer",
+      //     "Account Manager",
+      //     "Accountant",
+      //     "Legal Team Lead",
+      //     "Lawyer"
+      //   ]
+      // }
 
     ])
     .then((response) => {
