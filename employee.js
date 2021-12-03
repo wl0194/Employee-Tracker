@@ -29,13 +29,15 @@ function menu() {
           "Add Department",
           "Quit",
         ]
-      }
+      }])
       .prompt([
         {
           type: "input",
           message: "What is the name of the department?",
           name: "department",
         }
+      ])
+      
         .then((response) => {
             console.log(response.choice)
             if (response.choice === "View All Departments") {
@@ -48,8 +50,8 @@ function menu() {
               console.log("Added to the database");
               getAddDepartment()
             }
-          });
-       
+          })
+      };
         
 function getAllDepartments() {
   db.query("SELECT * FROM department", (err, results) => {
