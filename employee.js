@@ -29,7 +29,7 @@ function menu() {
           "Add Department",
           "Quit",
         ]
-      }]
+      }])
         .then((response) => {
             console.log(response.choice)
             if (response.choice === "View All Departments") {
@@ -40,7 +40,7 @@ function menu() {
               getAllEmployees()
             } else if ("Add Department" === response.department) {
               console.log("Added to the database");
-              getAddDepartment()
+              addDepartment()
             }
           })
       };
@@ -75,7 +75,25 @@ function getAllEmployees() {
     }
   })
 }
-
+function addDepartment() {
+  inquirer.prompt([
+    {
+      type:"input",
+      name:"department",
+      message:"What is the name of the department?"
+    }
+  ])
+    .then((response) => {
+      db.query("INSERT INTO department", (err, results) => {
+        if (err) {
+          console.table(err);
+        } else {
+          console.table(results);
+          menu();
+        }
+      });
+    })
+};
 // function getAddEmployee() {
 //   db.query("INSERT INTO employee(firstname,lastname)", (err, results) => {
 //     if (err) {
@@ -105,3 +123,4 @@ menu()
 //     name: "department",
 //   }
 // ])
+

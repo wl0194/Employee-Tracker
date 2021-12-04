@@ -6,7 +6,7 @@ This is a command-line application from scratch to manage a company's employee d
 
 ## Installation
 
-Node.js, npm and Express.js must be installed to use this application.
+Node.js, npm and mysql must be installed to use this application.
 
 ## Demo
 
