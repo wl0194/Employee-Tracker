@@ -38,8 +38,7 @@ function menu() {
               getAllRoles()
             } else if ("View All Employees" === response.choice) {
               getAllEmployees()
-            } else if ("Add Department" === response.department) {
-              console.log("Added to the database");
+            } else if ("Add Department" === response.choice) {
               addDepartment()
             }
           })
@@ -116,11 +115,5 @@ function addDepartment() {
 // }
 menu()
 
-// .prompt([
-//   {
-//     type: "input",
-//     message: "What is the name of the department?",
-//     name: "department",
-//   }
-// ])
+
 
