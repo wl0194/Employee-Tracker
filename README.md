@@ -10,7 +10,7 @@ Node.js, npm and mysql must be installed to use this application.
 
 ## Demo
 
-* [video](https://youtu.be/efZP-_dulbg)
+* [Video](https://youtu.be/efZP-_dulbg)
 
 ## Links
 
