@@ -42,8 +42,11 @@ function menu() {
         addDepartment()
       } else if ("Add Role" === response.choice) {
         addRole()
-      } else if ("Add Employee" === response.choice)
+      } else if ("Add Employee" === response.choice) {
         addEmployee()
+      } else if ("Update Employee" === response.cho) {
+        updateEmployeeRole()
+      }
     })
 };
 
@@ -171,12 +174,12 @@ function selectManager() {
         {
           name: "firstname",
           type: "input",
-          message: "Enter their first name "
+          message: "What is their first name?"
         },
         {
           name: "lastname",
           type: "input",
-          message: "Enter their last name "
+          message: "What is their last name?"
         },
         {
           name: "role",
@@ -186,8 +189,8 @@ function selectManager() {
         },
         {
             name: "manager",
-            type: "rawlist",
-            message: "What is the manager's name?",
+            type: "list",
+            message: "What is their manager's name?",
             choices: selectManager()
         }
     ]).then(function (answers) {
@@ -208,5 +211,49 @@ function selectManager() {
 
   })
 }
- 
+
+// Update Employee Role //
+function updateEmployeeRole() {
+  db.query("SELECT employee.last_name, roles.title FROM employee JOIN roles ON employee.role_id = roles.id;", function(err, res) {
+   if (err) throw err
+   console.log(res)
+  inquirer.prompt([
+        {
+          name: "lastName",
+          type: "rawlist",
+          choices: function() {
+            const lastName = [];
+            for (var i = 0; i < res.length; i++) {
+              lastName.push(res[i].last_name);
+            }
+            return lastName;
+          },
+          message: "What is the Employee's last name? ",
+        },
+        {
+          name: "role",
+          type: "rawlist",
+          message: "What is the Employees new title? ",
+          choices: selectRole()
+        },
+    ]).then(function(res) {
+      const roleId = selectRole().indexOf(res.role) + 1
+      db.query("UPDATE employee SET WHERE ?", 
+      {
+        last_name: res.lastName
+         
+      }, 
+      {
+        role_id: roleId
+         
+      }, 
+      function(err){
+          if (err) throw err
+          console.table(res)
+          menu()
+      })
+
+  });
+});
+}
   menu();
